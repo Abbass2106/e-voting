@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Election Commission Dashboard</title>
+    <link rel="stylesheet" th:href="@{/CSS/ElectionCommitte.css}">
+</head>
+<body>
+<div class="header">
+    <h2>Election Commission Dashboard</h2>
+    <div class="user-info">
+        <div class="user-avatar" th:text="${userInitials}">EC</div>
+        <span th:text="${userName}">Election Commissioner</span>
+        <form th:action="@{/logout}" method="post">
+            <button class="logout-btn" type="submit">Logout</button>
+        </form>
+    </div>
+</div>
+
+<div class="sidebar">
+    <ul class="sidebar-menu">
+        <li class="active"><i>📊</i> <a th:href="@{/dashboard}">Dashboard</a></li>
+        <li><a th:href="@{/createElection}"><i>📝</i> Create Election</a></li>
+        <li><a th:href="@{/review-voters}"><i>✏️</i> Review Voters</a></li>
+        <li><a th:href="@{/manage-elections}"><i>🗳️</i> Manage Elections</a></li>
+        <li><a th:href="@{/election-reports}"><i>📊</i> Election Reports</a></li>
+    </ul>
+</div>
+
+
+
+
+<div class="main-content">
+    <h2>Election Commission Control Panel</h2>
+
+    <div class="dashboard-cards">
+        <div class="card">
+            <div class="card-header"><i>🏛️</i> Active Elections</div>
+            <p th:text="'There are currently ' + ${activeElectionCount} + ' active elections.'">There are currently 3 active elections.</p>
+            <a href="#" class="btn">Manage Elections</a>
+        </div>
+
+        <div class="card">
+            <div class="card-header"><i>👥</i> Voter Registrations</div>
+            <p th:text="${pendingVoters} + ' new voter applications pending review.'">124 new voter applications pending review.</p>
+            <a href="#" class="btn">Review Voters</a>
+        </div>
+
+        <div class="card">
+            <div class="card-header"><i>👤</i> Candidate Applications</div>
+            <p th:text="${pendingCandidates} + ' candidate applications pending approval.'">27 candidate applications pending approval.</p>
+            <a href="#" class="btn">Review Candidates</a>
+        </div>
+    </div>
+
+    <div class="admin-section">
+        <h3>Pending Candidate Approvals</h3>
+        <table class="data-table">
+            <thead>
+            <tr>
+                <th>Candidate ID</th>
+                <th>Name</th>
+                <th>Election</th>
+                <th>Position</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="candidate : ${pendingCandidateList}">
+                <td th:text="${candidate.id}">C789123</td>
+                <td th:text="${candidate.name}">John Davis</td>
+                <td th:text="${candidate.election}">Student Union 2023</td>
+                <td th:text="${candidate.position}">President</td>
+                <td th:text="${candidate.status}">Pending</td>
+                <td>
+                    <button class="action-btn view-btn">View</button>
+                    <button class="action-btn approve-btn">Approve</button>
+                    <button class="action-btn reject-btn">Reject</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="admin-section">
+        <h3>Recent Voter Registrations</h3>
+        <table class="data-table">
+            <thead>
+            <tr>
+                <th>Voter ID</th>
+                <th>Name</th>
+                <th>Registration Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="voter : ${recentVoterList}">
+                <td th:text="${voter.id}">V987654</td>
+                <td th:text="${voter.name}">Emily Wilson</td>
+                <td th:text="${voter.registrationDate}">2023-10-01</td>
+                <td th:text="${voter.status}">Pending</td>
+                <td>
+                    <button class="action-btn view-btn">View</button>
+                    <button class="action-btn approve-btn">Approve</button>
+                    <button class="action-btn reject-btn">Reject</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

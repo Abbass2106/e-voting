@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+    <link rel="stylesheet" th:href="@{/CSS/error.css}">
+
+</head>
+<body>
+<div class="error-container">
+    <div class="error-title">Oops! Something went wrong.</div>
+    <div class="error-message" th:text="${errorMessage}"></div>
+    <button class="back-btn" onclick="window.history.back()">Go Back</button>
+</div>
+</body>
+</html>

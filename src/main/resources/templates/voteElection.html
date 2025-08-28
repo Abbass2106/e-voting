@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Vote in Election</title>
+    <link rel="stylesheet" th:href="@{/CSS/voteElection.css}">
+</head>
+<body>
+<div class="header">
+    <h2>Vote in Election</h2>
+</div>
+
+<div class="main-content">
+    <div th:if="${activeElections.size() == 0}">
+        <p>No active elections available right now.</p>
+    </div>
+
+    <div th:each="item : ${activeElections}" class="election-section">
+        <!-- Only show form if candidates exist -->
+        <div th:if="${#lists.size(item['candidates']) > 0}">
+            <div class="election-title" th:text="${item['election'].title + ' election'}"></div>
+
+            <form th:action="@{/submitVote}" method="post">
+                <input type="hidden" name="electionId" th:value="${item['election'].electionId}" />
+
+                <div th:each="cand : ${item['candidates']}" class="candidate-option">
+                    <label>
+                        <input type="radio"
+                               th:name="'candidateId_' + ${item['election'].electionId}"
+                               th:value="${cand.candidateId}" required />
+                        <span th:text="${cand.name}"></span>
+                    </label>
+                </div>
+
+                <button type="submit">Vote</button>
+            </form>
+
+            <hr/>
+        </div>
+    </div>
+</div>
+</body>
+</html>

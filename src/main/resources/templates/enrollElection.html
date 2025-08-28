@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enroll in Election</title>
+    <link rel="stylesheet" th:href="@{/CSS/enrollElection.css}">
+</head>
+<body>
+<div class="header">
+    <h2>Enroll in Election</h2>
+    <div class="user-info">
+        <span th:text="${userName}"></span>
+        <form th:action="@{/logout}" method="post">
+            <button class="logout-btn" type="submit">Logout</button>
+        </form>
+    </div>
+</div>
+
+<div class="main-content">
+    <h3>Select an Election and Position to Enroll</h3>
+    <form th:action="@{/enrollElection}" method="post">
+        <label>Election:</label>
+        <select name="electionId" required>
+            <option value="" disabled selected>Select Election</option>
+            <th:block th:each="election, iterStat : ${availableElections}">
+                <option th:value="${election.electionId}"
+                        th:text="${election.title + ' (' + election.startDate + ' to ' + election.endDate + ')'}">
+                </option>
+            </th:block>
+        </select>
+        <br><br>
+
+        <label for="position">Position:</label>
+        <input type="text" id="position" name="position" placeholder="e.g. President" required>
+        <br><br>
+
+        <button class="btn" type="submit">Enroll</button>
+    </form>
+
+    <div th:if="${successMessage}" class="success-msg" th:text="${successMessage}"></div>
+    <div th:if="${errorMessage}" class="error-msg" th:text="${errorMessage}"></div>
+</div>
+</body>
+</html>

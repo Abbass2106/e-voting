@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voter Dashboard</title>
+    <link rel="stylesheet" th:href="@{/CSS/voters.css}">
+</head>
+<body>
+<div class="header">
+    <h2>Voter's Dashboard</h2>
+    <div class="user-info">
+        <span th:text="${userName}"></span>
+        <form th:action="@{/logout}" method="post">
+            <button class="logout-btn" type="submit">Logout</button>
+        </form>
+    </div>
+</div>
+
+<div class="sidebar">
+    <ul class="sidebar-menu">
+        <li class="active"><i>📊</i> <a th:href="@{/dashboard}">Dashboard</a></li>
+        <li><a th:href="@{/voterDetails}"><i>📝</i> Upload Details</a></li>
+        <li><a th:href="@{/voterDetails}"><i>✏️</i> Update Details</a></li>
+        <li><a th:href="@{/voteElection}"><i>🗳️</i> Vote in Election</a></li>
+        <li><a th:href="@{/view-results}"><i>📊</i> View Results</a></li>
+    </ul>
+</div>
+
+
+
+
+<div class="main-content">
+    <h2 th:text="'Welcome, ' + ${userName}"></h2>
+    <p th:text="'Your voter ID: ' + ${voterId}"></p>
+
+    <div class="dashboard-cards">
+        <div class="card">
+            <div class="card-header"><i>✅</i> Registration Status</div>
+            <p>Your voter registration is complete and verified.</p>
+            <a th:href="@{/viewDetails}" class="btn">View Details</a>
+        </div>
+
+        <div class="card">
+            <div class="card-header"><i>📅</i> Upcoming Elections</div>
+            <p th:text="'You have ' + ${upcomingElectionCount} + ' upcoming elections to participate in.'">.</p>
+            <a href="#" class="btn">View Elections</a>
+        </div>
+
+        <div class="card">
+            <div class="card-header"><i>🏛️</i> Voting History</div>
+            <p th:text="'You\'ve participated in ' + ${electionsParticipated} + ' elections so far.'"></p>
+            <a href="#" class="btn">View History</a>
+        </div>
+    </div>
+
+    <div class="active-elections">
+        <h3>Active Elections</h3>
+        <div class="election-list">
+            <div class="election-card" th:each="election : ${activeElections}">
+                <div class="election-title" th:text="${election.title}">Student Union Election 2023</div>
+                <div class="election-dates" th:text="${election.dates}">Oct 15 - Oct 20, 2023</div>
+                <p th:text="${election.description}">Cast your vote for student representatives.</p>
+                <a href="#" class="btn" th:text="${election.buttonText}">Vote Now</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="voteModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>Cast Your Vote</h2>
+        <p>Select your candidate for Student Union President:</p>
+
+        <button class="btn">Submit Vote</button>
+    </div>
+</div>
+
+<script>
+
+</script>
+</body>
+</html>

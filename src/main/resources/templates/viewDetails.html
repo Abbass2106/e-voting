@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>View Voter Details</title>
+  <link rel="stylesheet" th:href="@{/CSS/viewDetails.css}">
+</head>
+<body>
+<div class="container">
+  <h2>Voter Profile</h2>
+
+  <div class="detail-row">
+    <span class="label">Full Name:</span>
+    <span class="value" th:text="${voter.name}"></span>
+  </div>
+
+  <div class="detail-row">
+    <span class="label">Email:</span>
+    <span class="value" th:text="${voter.email}"></span>
+  </div>
+
+  <div class="detail-row">
+    <span class="label">Gender:</span>
+    <span class="value" th:text="${voter.gender}"></span>
+  </div>
+
+  <div class="detail-row">
+    <span class="label">Date of Birth:</span>
+    <span class="value" th:text="${voter.dob}"></span>
+  </div>
+
+  <div class="detail-row">
+    <span class="label">Phone Number:</span>
+    <span class="value" th:text="${voter.phone}"></span>
+  </div>
+
+  <div class="detail-row">
+    <span class="label">Address:</span>
+    <span class="value" th:text="${voter.address}"></span>
+  </div>
+
+  <a th:href="@{/voters}" class="back-button">Back to Dashboard</a>
+</div>
+</body>
+</html>

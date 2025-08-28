@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Committee Login</title>
+    <link rel="stylesheet" th:href="@{/CSS/form.css}">
+</head>
+<body>
+<div class="form-container">
+    <h2>Committee Login</h2>
+    <form th:action="@{/committeeLogin}" method="post">
+        <label for="Name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">Login</button>
+    </form>
+
+    <div th:if="${loginError}" style="color:red;">
+        <p th:text="${loginError}"></p>
+    </div>
+
+</div>
+</body>
+</html>

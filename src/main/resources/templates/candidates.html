@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidate Dashboard</title>
+    <link rel="stylesheet" th:href="@{/CSS/candidates.css}">
+</head>
+<body>
+<div class="header">
+    <h2>Candidate Dashboard</h2>
+    <div class="user-info">
+        <span th:text="${userName}"></span>
+        <form th:action="@{/logout}" method="post">
+            <button class="logout-btn" type="submit">Logout</button>
+        </form>
+    </div>
+</div>
+
+<div class="sidebar">
+    <ul class="sidebar-menu">
+        <li class="active"><a th:href="@{/candidates}"><span class="icon">📊</span> Dashboard</a></li>
+        <li><a th:href="@{/uploadDetails}"><span class="icon">📝</span> Upload Details</a></li>
+        <li><a th:href="@{/updateDetails}"><span class="icon">✏️</span> Update Details</a></li>
+        <li><a th:href="@{/enrollElection}"><span class="icon">🗳️</span> Enroll for Election</a></li>
+        <li><a th:href="@{/campaignAnalytics}"><span class="icon">📊</span> Campaign Analytics</a></li>
+    </ul>
+</div>
+
+
+<div class="main-content">
+    <h2 th:text="'Welcome, Candidate ' + ${userName}"></h2>
+    <p th:text="'Candidate ID: ' + ${candidateId}"></p>
+
+    <div class="dashboard-cards">
+        <div class="card">
+            <div class="card-header"><i>✅</i> Verification Status</div>
+            <p>Your candidate profile is <strong th:text="${verificationStatus}">verified</strong>.</p>
+            <a href="#" class="btn">View Profile</a>
+        </div>
+
+        <div class="card">
+            <div class="card-header"><i>🏆</i> Current Elections</div>
+            <p th:text="'You\'re participating in ' + ${currentElectionCount} + ' elections.'">You're participating in 2 elections.</p>
+            <a href="#" class="btn">View Elections</a>
+        </div>
+
+        <div class="card">
+            <div class="card-header"><i>📊</i> Campaign Stats</div>
+            <p th:text="'Your profile has been viewed ' + ${profileViews} + ' times.'">Your profile has been viewed 1,245 times.</p>
+            <a href="#" class="btn">View Analytics</a>
+        </div>
+    </div>
+
+    <div class="campaign-section">
+        <h3>Your Election Campaigns</h3>
+        <div class="election-list">
+            <div class="election-card" th:each="campaign : ${campaigns}">
+                <div class="election-title">
+                    <span th:text="${campaign.title}">Student Union Election 2023</span>
+                    <span class="status-badge"
+                          th:classappend="' status-' + ${campaign.status.toLowerCase()}"
+                          th:text="${campaign.status}">Approved</span>
+                </div>
+                <div class="election-dates" th:text="${campaign.dateRange}">Oct 15 - Oct 20, 2023</div>
+                <p th:text="'Position: ' + ${campaign.position}">Position: Student Union President</p>
+                <a href="#" class="btn" th:text="${campaign.buttonText}">View Campaign</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

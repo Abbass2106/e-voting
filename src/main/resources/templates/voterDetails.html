@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Upload Voter Details</title>
+  <link rel="stylesheet" th:href="@{/CSS/voterDetails.css}">
+</head>
+<body>
+<div class="container">
+  <h2>Upload Voter Details</h2>
+  <form action="#" method="post" th:action="@{/voterDetails}" th:object="${voter}">
+    <label for="name">Name:</label>
+    <input type="text" id="name" th:field="*{name}" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" th:field="*{email}">
+
+    <label for="address">Address:</label>
+    <input type="text" id="address" th:field="*{address}">
+
+    <label for="gender">Gender:</label>
+    <select id="gender" th:field="*{gender}">
+      <option value="" disabled selected>Select Gender</option>
+      <option value="MALE">Male</option>
+      <option value="FEMALE">Female</option>
+    </select>
+
+    <label for="dob">Date of Birth:</label>
+    <input type="date" id="dob" th:field="*{dob}" required>
+
+    <label for="phone">Phone Number:</label>
+    <input type="number" id="phone" th:field="*{phone}">
+
+    <button type="submit">Submit</button>
+
+    <div th:if="${successMessage}" class="success-msg" th:text="${successMessage}"></div>
+    <div th:if="${errorMessage}" class="error-msg" th:text="${errorMessage}"></div>
+  </form>
+</div>
+</body>
+</html>

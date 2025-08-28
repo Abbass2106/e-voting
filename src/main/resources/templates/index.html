@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Election System</title>
+    <link rel="stylesheet" th:href="@{/CSS/index.css}">
+</head>
+<body>
+<header class="header">
+    <div class="logo">
+        <span class="logo-icon">🗳️</span>
+        <h1>e-Voting System</h1>
+    </div>
+    <nav class="nav-links">
+        <a th:href="@{#about}">About</a>
+        <a th:href="@{#features}">Features</a>
+        <a th:href="@{#contact}">Contact</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>Secure Online Election System</h1>
+    <p>A modern, transparent, and accessible platform for conducting elections with integrity and efficiency.</p>
+</section>
+
+<div class="role-cards">
+    <!-- Voter Card -->
+    <div class="role-card voter">
+        <div class="card-header">Voter Portal</div>
+        <div class="card-body">
+            <ul>
+                <li>Register as a voter</li>
+                <li>Upload your details</li>
+                <li>Vote in elections</li>
+                <li>View election results</li>
+                <li>Manage your profile</li>
+            </ul>
+            <a th:href="@{/voterLogin}" class="card-btn">Login</a>
+            <a th:href="@{/voterRegister}" class="card-btn">Register</a>
+        </div>
+    </div>
+
+    <!-- Candidate Card -->
+    <div class="role-card candidate">
+        <div class="card-header">Candidate Portal</div>
+        <div class="card-body">
+            <ul>
+                <li>Register as candidate</li>
+                <li>Submit your profile</li>
+                <li>Enroll in elections</li>
+                <li>Track your campaign</li>
+                <li>View election stats</li>
+            </ul>
+            <a th:href="@{/candidateLogin}" class="card-btn">Login</a>
+            <a th:href="@{/candidateRegister}" class="card-btn">Register</a>
+        </div>
+    </div>
+
+    <!-- Election Commission Card -->
+    <div class="role-card commission">
+        <div class="card-header">Election Commission</div>
+        <div class="card-body">
+            <ul>
+                <li>Create elections</li>
+                <li>Review voters</li>
+                <li>Approve candidates</li>
+                <li>Monitor elections</li>
+                <li>Generate reports</li>
+            </ul>
+            <a th:href="@{/committeeLogin}" class="card-btn">Commission Login</a>
+        </div>
+    </div>
+</div>
+
+<section class="features" id="features">
+    <h2>System Features</h2>
+    <div class="feature-grid">
+        <div class="feature-card">
+            <div class="feature-icon">🔒</div>
+            <h3>Secure Voting</h3>
+            <p>Military-grade encryption ensures your vote remains anonymous and tamper-proof throughout the election process.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">📱</div>
+            <h3>Mobile Friendly</h3>
+            <p>Access the election system from any device, anywhere, with our fully responsive interface.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">📊</div>
+            <h3>Real-time Results</h3>
+            <p>View election results as they come in, with live updates and detailed analytics.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">👥</div>
+            <h3>Voter Verification</h3>
+            <p>Advanced identity verification ensures only eligible voters can participate in elections.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🔄</div>
+            <h3>Audit Trail</h3>
+            <p>Complete transaction history allows for full transparency and post-election audits.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🌐</div>
+            <h3>Multi-language</h3>
+            <p>Support for multiple languages makes the system accessible to diverse communities.</p>
+        </div>
+    </div>
+</section>
+
+<footer class="footer" id="contact">
+    <p>© 2025 Online Election System. All rights reserved.</p>
+    <p>Contact: 2025elections@gmail.com | Phone: (255) 0625391553</p>
+    <p>Address: Kikuyu Ave, Dodoma</p>
+</footer>
+</body>
+</html>
